@@ -1,35 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Number Generator</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <div class="wrapper">
-        <div class="output">
-            <p class="output-first-text">Birinchi Raqamlar bu yerda chiqadi</p>
-            <p class="output-second-text">Ikkinchi Raqamlar bu yerda chiqadi</p>
+      <h1>Number Generator For Printers</h1>
+      <div class="output">
+        <div class="output-text-wrapper">
+          <p class="output-text output-first-text">
+            Birinchi Raqamlar bu yerda chiqadi
+          </p>
+          <button class="output-btn" data-id="1">
+            Ko'chirib olish
+          </button>
         </div>
-        <div class="input">
-            <form class="input-form">
-                <div class="number-type-wrapper">
-                    <select class="number-type" id="type">
-                        <option class="option" value="1" selected>Bir list uchun bitta sahifa</option>
-                        <option class="option" value="2">Bir list uchun ikkita sahifa</option>
-                    </select>
-                </div>
-                <div class="number-range">
-                    <input class="number-starts-from" type="number" placeholder="Nechchi raqamidan boshlansin" required>
-                    <input class="number-ends-at" type="number" placeholder="Nechchi raqamigacha" required>
-                </div>
-                <button class="submit-btn">Ragmlarni chiqarish</button>
-            </form>
+        <div class="output-text-wrapper">
+          <p class="output-text output-second-text">
+            Ikkinchi Raqamlar bu yerda chiqadi
+          </p>
+          <button class="output-btn" data-id="2">
+            Ko'chirib olish
+          </button>
         </div>
+      </div>
+      <div class="input">
+        <form class="input-form">
+          <div class="number-type-wrapper">
+            <select class="number-type" id="type">
+              <option class="option" value="1" selected>
+                Bir list uchun bitta sahifa
+              </option>
+              <option class="option" value="2">
+                Bir list uchun ikkita sahifa
+              </option>
+            </select>
+          </div>
+          <div class="number-range">
+            <input
+              class="number-range-inputs number-starts-from"
+              type="number"
+              placeholder="Nechchi raqamidan boshlansin"
+              required
+            />
+            <input
+              class="number-range-inputs number-ends-at"
+              type="number"
+              placeholder="Nechchi raqamigacha"
+              required
+            />
+          </div>
+          <button class="submit-btn">Raqamlarni chiqarish</button>
+        </form>
+      </div>
     </div>
 
     <script src="./js/script.js"></script>
-</body>
+  </body>
 </html>

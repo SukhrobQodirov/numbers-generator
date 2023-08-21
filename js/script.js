@@ -1,51 +1,75 @@
-const wrapperElement = document.querySelector('.wrapper');
-const outputFirstText = document.querySelector('.output-first-text');
-const outputSecondText = document.querySelector('.output-second-text');
-const inputForm = document.querySelector('.input-form');
+const wrapperElement = document.querySelector(".wrapper");
+const outputFirstText = document.querySelector(".output-first-text");
+const outputSecondText = document.querySelector(".output-second-text");
+const inputForm = document.querySelector(".input-form");
 
 let formValues = {
-    numberType: null,
-    starts: null,
-    end: null,
-}
+  numberType: null,
+  starts: null,
+  end: null,
+};
 
-inputForm.addEventListener('submit', evt => {
-    evt.preventDefault();
+inputForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
 
-    const start = evt.target.querySelector('.number-starts-from').value;
-    const end = evt.target.querySelector('.number-ends-at').value;
-    const type = evt.target.querySelector('.number-type').value;
+  const start = evt.target.querySelector(".number-starts-from").value;
+  const end = evt.target.querySelector(".number-ends-at").value;
+  const type = evt.target.querySelector(".number-type").value;
 
-    let output = {
-        firstNum: [],
-        secondNum: []
-    };
+  let numbers = [];
+  for (let i = start; i <= end; i++) {
+    numbers.push(+i);
+  }
 
-    let numbers = [];
-    for(let i = start; i <= end; i++) {
-        if(type == 1) {
-            if(i % 2 == 0) {
-                output.firstNum.push(i);
-                outputFirstText.textContent = output.firstNum;
-            } else if(i % 2 != 0) {
-                output.secondNum.push(i);
-                outputSecondText.textContent = output.secondNum;
-            }
-        } else if (type == 2) {
-            let result = {
-                firstNum: [],
-                secondNum: []
-            };
+  let output = {
+    firstNum: [],
+    secondNum: [],
+  };
+  let newArr = [];
+  let count = 0;
 
-            numbers = [...numbers, +i];
-
-                            
-        }
+  for (let i = 0; i < numbers.length; i++) {
+    if (type == 1) {
+      if (i % 2 == 0) {
+        output.firstNum.push(numbers[i]);
+        outputFirstText.textContent = output.firstNum;
+      } else {
+        output.secondNum.push(numbers[i]);
+        outputSecondText.textContent = output.secondNum;
+      }
+    } else if (type == 2) {
+      if (count <= i) {
+        newArr.push(numbers.slice(count, count + 2));
+        count = count + 2;
+      }
     }
-    console.log(numbers);
-})
+  }
+  if (newArr.length > 0) {
+    for (let i = 0; i < newArr.length; i++) {
+      if (i == 0 || i % 2 == 0) {
+        output.firstNum.push(newArr[i]);
+      } else {
+        output.secondNum.push(newArr[i]);
+      }
+    }
+  }
+  outputFirstText.textContent = output.firstNum;
+  outputSecondText.textContent = output.secondNum;
+});
 
-// alert('Hello World');
-// prompt('Type your name');
+const outputBtn = document.querySelectorAll(".output-btn");
 
-// console.log("Hello World");
+outputBtn[0].addEventListener("click", (evt) => {
+  // Get the text field
+  let copyTextFirst = document.querySelector(".output-first-text").innerHTML;
+
+  navigator.clipboard.writeText(copyTextFirst);
+});
+
+outputBtn[1].addEventListener("click", (evt) => {
+  // Get the text field
+  let copyTextSecond = document.querySelector(".output-second-text").innerHTML;
+
+  // Select the text field
+  navigator.clipboard.writeText(copyTextSecond);
+});
